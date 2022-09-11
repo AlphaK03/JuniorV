@@ -3,36 +3,37 @@
 //
 
 #include "iostream"
-#include "Basica.h"
+#include "Estrella.h"
+#include "Rayo.h"
 
 using namespace std;
 
 int main(){
 
-     Basica obj (2);
+    Estrella estrella;
 
-     int i, j;
-     int x = 1;
-     int y = 3;
+    estrella.agregarNumero(1);
+    estrella.agregarNumero(2);
+    estrella.agregarNumero(3);
+    estrella.agregarNumero(4);
 
-     obj.calcular (&x, x, y);
-     cout << "valor de x = " << x << "  El valor de y = " << y << endl;
-     cout << "El valor del atributo a = " << obj.getA() <<endl;
-     Basica::modificar (&i, &j);
-     cout << "El valor de i = " << i << " El valor de j = " << j << endl;
+    for(auto num : estrella.getListaNumeros()){
+        cout << num << " ";
+    }
+
+    vector<int>* lista = &estrella.getListaNumeros();
 
 
-//    int numero = 2;
-//
-//    int* punteroNumero;
-//
-//    punteroNumero = &numero;
-//
-//    cout << *punteroNumero << endl;
-//
-//    *punteroNumero = 4;
-//
-//    cout << numero;
+    Rayo rayo;
+    rayo.setPunteroAListaNumeros(lista);
+
+    rayo.modificarUltimoDato(7);
+
+    cout << endl;
+
+    for(auto num : estrella.getListaNumeros()){
+        cout << num << " ";
+    }
 
 
     return 0;
