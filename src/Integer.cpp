@@ -101,6 +101,11 @@ Integer &operator+=(Integer &a, const char *&b) {
     return a;
 }
 
+Integer &Integer::operator*(const Integer &b) {
+    *this = b;
+    return *this;
+}
+
 Integer::Integer() = default;
 
 Integer::~Integer() = default;

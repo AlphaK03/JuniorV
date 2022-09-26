@@ -38,6 +38,8 @@ public:
 
     Integer &operator=(const Integer &b);
 
+    Integer &operator*(const Integer &b);
+
     static int length(Integer);
     virtual ~Integer();
 };
