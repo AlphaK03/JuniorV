@@ -13,7 +13,7 @@ private:
     string integerChars;
 public:
 
-    Integer(string integerChars);
+    explicit Integer(string integerChars);
 
     Integer();
 

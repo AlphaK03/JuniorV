@@ -13,8 +13,8 @@ class RuntimeExcetion{
 private:
     string errorMsg;
 public:
-    RuntimeExcetion(const string& err){
-        errorMsg=err;}
+    explicit RuntimeExcetion(const string& err){
+        errorMsg = err;}
 
     string getMenssage()const {
         return errorMsg;
@@ -24,7 +24,7 @@ public:
 
 class StackEmpty:public RuntimeExcetion{
 public:
-    StackEmpty(const string &err): RuntimeExcetion(err){
+    explicit StackEmpty(const string &err): RuntimeExcetion(err){
 
     }
 };

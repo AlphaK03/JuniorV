@@ -25,14 +25,14 @@ void Stack<T>::push(T *e) {
 }
 
 template <class T>
-T *Stack<T>::top() throw(StackEmpty) {
+T *Stack<T>::top() noexcept(false) {
     if(empty())
         throw StackEmpty("Top sobre un stack vacio");
     return S->inicio();
 }
 
 template <class T>
-void Stack<T>::pop() throw(StackEmpty) {
+void Stack<T>::pop() noexcept(false) {
     if (empty())
         throw StackEmpty("Top sobre un stack vacio");
     S->borraInicio();

@@ -18,9 +18,10 @@ public:
     ~Stack();
     int size();
     bool empty()const;
-    T *top() throw(StackEmpty);
+    T *top() noexcept(false);
     void push(T *e);
-    void pop() throw(StackEmpty);
+    void pop() noexcept(false);
+
 };
 
 

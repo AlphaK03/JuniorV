@@ -5,32 +5,10 @@
 #include "List.h"
 template<class tipo>
 List<tipo>::List(){
-    raiz=new Node<tipo>;
+    raiz = new Node<tipo>;
 }
 
 
-template<class tipo>
-List<tipo>::~List() {
-    Node<tipo> *temp;
-    Node<tipo> *anterior;
-    if (raiz->getSiguente()== nullptr){
-        delete raiz;
-    }
-    else{
-        while (raiz->getSiguente()!= nullptr){
-            temp=raiz;
-            while (temp->getSiguente()!= nullptr){
-                anterior=temp;
-                temp= temp->getSiguente();
-            }
-            anterior->setSiguente(nullptr);
-            delete temp;
-        }
-
-    }
-    cout<<"List borrada";
-
-}
 template<class tipo>
 string List<tipo>::toString() {
     stringstream s;
@@ -79,3 +57,6 @@ void List<tipo>::borraInicio() {
         delete temp;
     }
 }
+
+template<class tipo>
+List<tipo>::~List() = default;

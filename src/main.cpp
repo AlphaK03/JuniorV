@@ -6,16 +6,21 @@
 #include "Rayo.h"
 #include "Integer.h"
 #include "MyStdLib.h"
+#include "List.h"
+#include "Stack.h"
 
 using namespace std;
 
 int main() {
 
+    Stack<Integer> list;
+
+
     cout << "Escribe un numero: " << endl;
 
     Integer num1("1000000000");
     cout << "El valor de num1 es: " << num1 << endl;
-
+    list.push(&num1);
     Integer num2("3");
     cout << "El valor de num2 es: " << num2 << endl;
 
@@ -23,7 +28,6 @@ int main() {
     Integer resultado;
     resultado += num1 + num1 + num2;
     cout << "El resultado es: " << resultado << endl;
-
 
 
 /*    Estrella estrella;
