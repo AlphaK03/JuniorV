@@ -2,15 +2,31 @@
 // Created by keylo on 31/8/2022.
 //
 
-#include "iostream"
 #include "Estrella.h"
 #include "Rayo.h"
+#include "Integer.h"
+#include "MyStdLib.h"
 
 using namespace std;
 
-int main(){
+int main() {
 
-    Estrella estrella;
+    cout << "Escribe un numero: " << endl;
+
+    Integer num1("1000000000");
+    cout << "El valor de num1 es: " << num1 << endl;
+
+    Integer num2("3");
+    cout << "El valor de num2 es: " << num2 << endl;
+
+
+    Integer resultado;
+    resultado += num1 + num1 + num2;
+    cout << "El resultado es: " << resultado << endl;
+
+
+
+/*    Estrella estrella;
 
     estrella.agregarNumero(1);
     estrella.agregarNumero(2);
@@ -33,8 +49,7 @@ int main(){
 
     for(auto num : estrella.getListaNumeros()){
         cout << num << " ";
-    }
-
+    }*/
 
     return 0;
 
