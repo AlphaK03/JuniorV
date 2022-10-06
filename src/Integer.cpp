@@ -33,7 +33,28 @@ bool Integer::operator>=(const Integer &rhs) const {
 
 
 
-Integer::Integer(string integerChars) : integerChars(move(integerChars)) {}
+Integer::Integer(string ss){
+    int iterator = 0;
+    string newString;
+    int  i = 0;
+
+    this->integerChars = ss;
+
+    while (ss[iterator] != '\0'){
+        newString += ss[iterator];
+
+        iterator++;
+        i++;
+        if(i == 4 || ss[iterator] == '\0'){
+            int *val = new int ();
+            *val = MyStdLib::strToInt(newString);
+            value->insertar(val);
+            val = new int();
+            newString.clear();
+            i = 0;
+        }
+    };
+}
 
 Integer &operator+(Integer &a, const Integer &b) {
     a += b;
@@ -63,6 +84,7 @@ Integer &operator+=(Integer &a, const Integer &b) {
 }
 
 ostream &operator<<(ostream &out, const Integer &a) {
+    /**/
     string charString;
     for (int i = 0; a.integerChars[i] != '\0'; i++){
         charString.push_back(a.integerChars[i]);
@@ -85,7 +107,7 @@ istream &operator>>(istream &in, Integer&a) {
     int n = s.size();
     for (int i = n - 1; i >= 0; i--) {
         if (!isdigit(s[i]))
-            throw ("INVALID NUMBER");
+            throw runtime_error("INVALID NUMBER");
         a.integerChars[n - i - 1] = s[i];
     }
     return in;
@@ -101,12 +123,75 @@ Integer &operator+=(Integer &a, const char *&b) {
     return a;
 }
 
-Integer &Integer::operator*(const Integer &b) {
-    *this = b;
-    return *this;
+
+Lista<int> *Integer::getValue() const {
+    return value;
+}
+
+void Integer::setValue(int *value) {
+    this->value->insertar(value);
+}
+
+Integer::Integer(string integerChars, Lista<int> *value) : integerChars(std::move(integerChars)), value(value) {}
+
+const string &Integer::getIntegerChars() const {
+    return integerChars;
+}
+
+void Integer::setIntegerChars(const string &integerChars) {
+    Integer::integerChars = integerChars;
+}
+
+Integer &operator*(Integer &a, const Integer &b) {
+    a *= b;
+    return a;
+}
+
+Integer &operator*=(Integer &a, const Integer &b) {
+    int s = 0;
+    MyStdLib myStdLib;
+    Integer temp(b);
+
+    s = (MyStdLib::strToInt(a.integerChars) * MyStdLib::strToInt(temp.integerChars));
+    a.integerChars = MyStdLib::intToString(s);
+    return a;
+}
+
+Integer &operator-(Integer &a, const Integer &b) {
+    a -= b;
+    return a;
+}
+
+Integer &operator-=(Integer &a, const Integer &b) {
+    int s = 0;
+    MyStdLib myStdLib;
+    Integer temp(b);
+
+    s = (MyStdLib::strToInt(a.integerChars) - MyStdLib::strToInt(temp.integerChars));
+    a.integerChars = MyStdLib::intToString(s);
+    return a;
+}
+
+Integer &operator/(Integer &a, const Integer &b) {
+    if(b.integerChars.size() == 1 && b.integerChars[0] == '0'){
+        throw runtime_error("Division entre 0");
+    }
+    a /= b;
+    return a;
+}
+
+Integer &operator/=(Integer &a, const Integer &b) {
+    int s = 0;
+    MyStdLib myStdLib;
+    Integer temp(b);
+
+    s = (MyStdLib::strToInt(a.integerChars) / MyStdLib::strToInt(temp.integerChars));
+    a.integerChars = MyStdLib::intToString(s);
+    return a;
 }
 
 Integer::Integer() = default;
+
 
 Integer::~Integer() = default;
 

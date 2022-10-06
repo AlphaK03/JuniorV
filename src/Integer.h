@@ -6,16 +6,19 @@
 #define JUNIORV_INTEGER_H
 #include "iostream"
 #include "MyStdLib.h"
+#include "Lista.h"
 
 using namespace std;
 class Integer {
 private:
-    string integerChars;
+    string integerChars{};
+    Lista<int>* value{};
 public:
+    Integer();
+
+    Integer(string integerChars, Lista<int> *value);
 
     explicit Integer(string integerChars);
-
-    Integer();
 
     bool operator==(const Integer &rhs) const;
 
@@ -38,10 +41,25 @@ public:
 
     Integer &operator=(const Integer &b);
 
-    Integer &operator*(const Integer &b);
+    friend Integer& operator*(Integer &a, const Integer &b);
+    friend Integer& operator*=(Integer &a, const Integer &b);
+
+    friend Integer& operator-(Integer &a, const Integer &b);
+    friend Integer& operator-=(Integer &a, const Integer &b);
+
+    friend Integer& operator/(Integer &a, const Integer &b);
+    friend Integer& operator/=(Integer &a, const Integer &b);
 
     static int length(Integer);
     virtual ~Integer();
+
+    Lista<int> *getValue() const;
+
+    void setValue(int *value);
+
+    const string &getIntegerChars() const;
+
+    void setIntegerChars(const string &integerChars);
 };
 
 

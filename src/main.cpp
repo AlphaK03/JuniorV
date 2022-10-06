@@ -10,18 +10,94 @@ using namespace std;
 
 int main() {
 
-    cout << "Escribe un numero: " << endl;
+    //Integer num1("200011");
 
-    Integer num1("1000");
-    cout << "El valor de num1 es: " << num1 << endl;
-    Integer num2("3000");
-    cout << "El valor de num2 es: " << num2 << endl;
+    string ss = "30453543435353";
+    string ss2 = "000012430";
 
-    Integer resultado;
-    resultado += num1 + num1 + num2;
-    cout << "El resultado es: " << resultado << endl;
+    auto* list = new Lista<int>;
+    auto* list2 = new Lista<int>;
+   /* int iterator = 0;
+    auto newString = new int ();
+    int  i = 0;
 
-    int i = 9;
+    while (ss[iterator] != '\0'){
+            *newString += ss[iterator];
+            iterator++;
+            i++;
+        if(i == 4 || ss[iterator] == '\0'){
+            list->insertar(newString);
+            newString = reinterpret_cast<int *>(new string());
+            i = 0;
+        }
+    };*/
+    int iterator = 0;
+    string newString;
+    int  i = 0;
+
+    while (ss[iterator] != '\0'){
+        newString += ss[iterator];
+
+        iterator++;
+        i++;
+        if(i == 4 || ss[iterator] == '\0'){
+            int *val = new int ();
+            *val = MyStdLib::strToInt(newString);
+            list->insertar(val);
+            val = new int();
+            newString.clear();
+            i = 0;
+        }
+    };
+
+    iterator = 0;
+    newString.clear();
+    while (ss2[iterator] != '\0'){
+        newString += ss2[iterator];
+
+        iterator++;
+        i++;
+        if(i == 4 || ss2[iterator] == '\0'){
+            int *val = new int ();
+            *val = MyStdLib::strToInt(newString);
+            list2->insertar(val);
+            val = new int();
+            newString.clear();
+            i = 0;
+        }
+    };
+   /*int iterator = 0;
+    string newString;
+    int  i = 0;
+
+    while (ss[iterator] != '\0'){
+        newString += ss[iterator];
+        iterator++;
+        i++;
+        if(i == 4 || ss[iterator] == '\0'){
+            int val = 0;
+            val = MyStdLib::strToInt(newString);
+            list->insertar(&val);
+            newString.clear();
+            i = 0;
+        }
+    };*/
+
+    string  dato1;
+    string  dato2;
+    dato2 = std::to_string(*list->buscarElemento(1));
+    cout << list2->mostrar()<< endl;
+
+//    while (integerChars[0] != '\0'){
+//        string fourLetters{};
+//        for(int i = 0; i < 3; i++){
+//            {
+//                fourLetters += integerChars[0];
+//                integerChars = std::to_string(remove(&integerChars[0]));
+//            }
+//        }
+//        this->value->insertar(new int(MyStdLib::strToInt(fourLetters)));
+//    }
 /*    Estrella estrella;
 
     estrella.agregarNumero(1);

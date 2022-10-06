@@ -1,139 +1,276 @@
 
 #ifndef PRACTICA_1_LISTA_H
 #define PRACTICA_1_LISTA_H
-#include "Nodo.h"
+
 #include <sstream>
+#include <ostream>
 
-template <class tipo>
-
-class Lista {
-
+template <class T>
+class Nodo {
 private:
-    Nodo<tipo> *raiz;
-    Nodo<tipo> *cola;
+    Nodo<T>* anterior{};
+    Nodo<T>* siguinte{};
+    T* objetoPtr{};
 public:
-    Lista();
-    ~Lista();
-    bool isEmpty();
-    tipo* valorInicio();
-    tipo valorFinal();
-    void agregar(Nodo<tipo> referencia, tipo valor);
-    void agregarInicio(tipo valor);
-    void agregarFinal(tipo valor);
-    void borrar(Nodo<tipo> *referencia);
-    void borrarInicio();
-    void borrarFinal();
-    int contador();
+    Nodo();
 
+    Nodo(T*, Nodo<T>*,Nodo<T>*);
+
+    virtual ~Nodo();
+    T* getObjetoPtr();
+    Nodo<T>* getSiguiente();
+    Nodo<T>* getAnterior();
+    void setAnterior(Nodo<T>*);
+    void setObjetoPtr(T*);
+    void setSiguiente(Nodo<T>*);
 };
 
 
-template<class tipo>
-Lista<tipo>::Lista(){
-    raiz=new Nodo<tipo>;
-    cola=new Nodo<tipo>;
-    raiz->setSiguente(cola);
-    cola->setAnterior(raiz);
+template<class T>
+Nodo<T>::Nodo(T* v, Nodo<T>* n, Nodo<T>* p)
+{
+    this->objetoPtr = v;
+    this->anterior = p;
+    this->siguinte = n;
 }
 
-template<class tipo>
-Lista<tipo>::~Lista() {
-    Nodo<tipo> *temp;
-    Nodo<tipo> *anterior;
-    if (raiz->getSiguente()== nullptr){
-        delete raiz;
+template<class T>
+Nodo<T>::~Nodo() {
+    delete objetoPtr;
+}
+
+template<class T>
+T* Nodo<T>::getObjetoPtr() {
+    return objetoPtr;
+}
+
+template<class T>
+Nodo<T>* Nodo<T>::getSiguiente() {
+    return this->siguinte;
+}
+
+template<class T>
+Nodo<T>* Nodo<T>::getAnterior()
+{
+    return anterior;
+}
+
+template<class T>
+void Nodo<T>::setAnterior(Nodo<T>* an)
+{
+    anterior = an;
+}
+
+template<class T>
+void Nodo<T>::setObjetoPtr(T* ptr) {
+    objetoPtr = ptr;
+}
+
+template<class T>
+void Nodo<T>::setSiguiente(Nodo<T>* nod) {
+    this->siguinte = nod;
+}
+
+template<class T>
+Nodo<T>::Nodo() {
+    this->objetoPtr = nullptr;
+    this->anterior = nullptr;
+    this->siguinte = nullptr;
+}
+
+//-----------------------Lista-----------------
+
+
+template <class T>
+class Lista {
+private:
+
+    Nodo<T>* primero{};
+    Nodo<T>* actual{};
+    Nodo<T>* ultimo{};
+    int cantidad{};
+
+
+public:
+    Lista();
+    Lista(const Lista<T>& ls);
+    virtual ~Lista();
+    int getCantidad();
+    void limpiaHeap();
+    Nodo<T>* getFront();
+    Nodo<T>* getBack();
+    bool empty();
+    bool insertar(T*);
+    bool eliminar();
+    std::string mostrar();
+    T* elemento();
+    T* buscarElemento(int);
+
+};
+
+template <class T>
+Lista<T>::Lista() {
+    this->primero = nullptr;
+    this->actual = nullptr;
+    this->ultimo = nullptr;
+    cantidad = 0;
+
+}
+
+
+template<class T>
+Lista<T>::Lista(const Lista<T>& ls)
+{
+    int contador = 0;
+    T* dato = NULL;
+    Nodo<T>* aux= ls.primero;
+    while (ls.cantidad>=contador)
+    {
+        dato = new T(*aux->getObjetoPtr());
+        this->insertar(dato);
+
+        contador++;
+        aux = aux->getSiguiente();
     }
-    else{
-        while (raiz->getSiguente()!= nullptr){
-            temp=raiz;
-            while (temp->getSiguente()!= nullptr){
-                anterior=temp;
-                temp= temp->getSiguente();
-            }
-            anterior->setSiguente(nullptr);
-            delete temp;
+
+}
+
+
+
+template <class T>
+Lista<T>::~Lista() {
+    this->limpiaHeap();
+}
+
+template<class T>
+int Lista<T>::getCantidad()
+{
+    return cantidad;
+}
+
+template<class T>
+void Lista<T>::limpiaHeap() {
+    Nodo<T>* actuall = NULL;
+    while (primero != NULL)
+    {
+        actuall = primero;
+        cantidad--;
+        primero = actuall->getSiguiente();
+        delete actuall;
+    }
+}
+template<class T>
+Nodo<T>* Lista<T>::getFront()
+{
+    return primero;
+}
+template<class T>
+Nodo<T>* Lista<T>::getBack()
+{
+    return ultimo;
+}
+template<class T>
+bool Lista<T>::empty()
+{
+    return primero == NULL;
+}
+
+
+template<class T>
+bool Lista<T>::insertar(T* p)
+{
+    auto* aux = new Nodo<T>;
+    actual = primero;
+
+    if (primero == nullptr) {
+        this->primero = new Nodo<T>(p, nullptr, nullptr);
+        return true;
+    }
+    while (actual->getSiguiente()) {
+        actual = actual->getSiguiente();
+    }
+    aux = new Nodo<T>(p, nullptr, actual);
+    this->cantidad++;
+    actual->setSiguiente(aux);
+    ultimo = aux;
+    cantidad++;
+    return true;
+
+}
+
+template<class T>
+bool Lista<T>::eliminar()
+{
+    if (!this->empty()) {
+        if (this->getCantidad() == 0) {
+            delete primero;
+            this->primero = nullptr;
+            return true;
         }
-
-    }
-    cout<<"lista borrada";
-
-}
-
-template<class tipo>
-bool Lista<tipo>::isEmpty() {
-    return (raiz->getSiguente()==cola);
-}
-
-template<class tipo>
-tipo* Lista<tipo>::valorInicio(){
-    Nodo<tipo> *temp=raiz->getSiguente();
-    if(temp== nullptr){
-        return -1;
-    }
-    return temp->getDatos();
-}
-
-template<class tipo>
-tipo Lista<tipo>::valorFinal(){
-    Nodo<tipo> *temp=cola->getSiguente();
-    if(temp== nullptr){
-        return -1;
-    }
-    return temp->getDatos();
-}
-
-template<class tipo>
-void Lista<tipo>::agregar(Nodo<tipo> referencia, tipo valor){
-    auto *nuevo= new Nodo<tipo>;
-    nuevo->setDatos(valor);
-    nuevo->setSiguente(referencia);
-    nuevo->setAnterior(referencia.getAnterior());
-    referencia.getAnterior()->setSiguente(nuevo);
-    referencia.setAnterior(nuevo);
-}
-
-template<class tipo>
-void Lista<tipo>::agregarInicio(tipo valor){
-    agregar(raiz->getSiguente(),valor);
-}
-
-template<class tipo>
-void Lista<tipo>::agregarFinal(tipo valor){
-    agregar(cola,valor);
-}
-
-template<class tipo>
-void Lista<tipo>::borrar(Nodo<tipo> *referencia){
-    Nodo<tipo> * ant= referencia->getAnterior();
-    Nodo<tipo> *sig= referencia->getSiguente();
-    ant->setSiguente(sig);
-    sig->setAnterior(ant);
-    delete referencia;
-}
-
-template<class tipo>
-void Lista<tipo>::borrarInicio(){
-    borrar(raiz->getSiguente());
-}
-
-template<class tipo>
-void Lista<tipo>::borrarFinal(){
-    borrar(cola->getAnterior());
-}
-
-template<class tipo>
-int Lista<tipo>::contador(){
-    Nodo<tipo> *temp=raiz->getSiguente();
-    int contador=0;
-    if(temp!= nullptr){
-        while (temp!=cola){
-            contador++;
-            temp= temp->getSiguente();
+        Nodo<T>* aux = nullptr;
+        actual = primero;
+        aux = ultimo->getAnterior();
+        aux->setSiguiente(nullptr);
+        ultimo->setSiguiente(primero->getSiguiente());
+        primero = ultimo;
+        ultimo = aux;
+        aux = actual->getSiguiente();//
+        if (aux == nullptr) {
+            delete actual;
+            cantidad--;
+            return true;
         }
+        aux->setAnterior(primero);
+        primero->setAnterior(nullptr);
+        delete actual;
+        cantidad--;
+        return  true;
     }
-    return contador;
+    return false;
 }
 
+
+template<class T>
+std::string Lista<T>::mostrar()
+{
+    /* std::string ss;
+    actual = primero;
+    while (actual) {
+        ss = *actual->getObjetoPtr();
+        actual = actual->getSiguiente();
+    }
+    return ss.c_str();*/
+std::stringstream ss;
+    actual = primero;
+    while (actual != nullptr) {
+        ss << *actual->getObjetoPtr();
+        actual = actual->getSiguiente();
+    }
+    return ss.str();
+}
+
+template<class T>
+T* Lista<T>::elemento()
+{
+    return primero->getObjetoPtr();
+}
+
+template<class T>
+T* Lista<T>::buscarElemento(int m)
+{
+    int contador = 0;
+    actual = primero;
+    T* obj = nullptr;
+    while (actual!=nullptr) {
+        if (contador == m) {
+            obj = actual->getObjetoPtr();
+            return obj;
+        }
+        contador++;
+        actual = actual->getSiguiente();
+    }
+    return nullptr;
+}
 
 
 #endif //PRACTICA_1_LISTA_H

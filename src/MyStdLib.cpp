@@ -13,6 +13,7 @@ int MyStdLib::strToInt(std::string str) {
             printf("No se permiten caracteres distintos a un numero" "\n");
             break;
         } else {
+
             number = number * 10 + (str[iterator] - 48);
             iterator++;
         }
