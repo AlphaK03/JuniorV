@@ -10,9 +10,9 @@ using namespace std;
 
 int main() {
 
-    //Integer num1("200011");
+    Integer num1("5234211132111111111111111111111111111111111111111131111111111111111111111111111111111111422222222222222222222222222222222222222222222222222222222225111111111111111111111111111111111111111119");
 
-    string ss = "30453543435353";
+    string ss = "12345678955";
     string ss2 = "000012430";
 
     auto* list = new Lista<int>;
@@ -86,7 +86,12 @@ int main() {
     string  dato1;
     string  dato2;
     dato2 = std::to_string(*list->buscarElemento(1));
-    cout << list2->mostrar()<< endl;
+
+    cout << "\n" << endl;
+    Integer num2;
+    num2 = num1 + num1;
+    cout << num2;
+
 
 //    while (integerChars[0] != '\0'){
 //        string fourLetters{};

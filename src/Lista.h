@@ -190,10 +190,9 @@ bool Lista<T>::insertar(T* p)
         actual = actual->getSiguiente();
     }
     aux = new Nodo<T>(p, nullptr, actual);
-    this->cantidad++;
+    cantidad++;
     actual->setSiguiente(aux);
     ultimo = aux;
-    cantidad++;
     return true;
 
 }
