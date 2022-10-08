@@ -111,6 +111,12 @@ Integer &operator+=(Integer &a, const Integer &b) {
     a.integerChars.clear();
     a.integerChars = *resultado;
 
+    int  auxNum;
+    if(ss.size() == 1 and ss2.size() == 1){
+        auxNum = (int)MyStdLib::strToInt(ss.substr(0,1)) + (int)MyStdLib::strToInt(ss2.substr(0,1));
+            a.integerChars = MyStdLib::intToString(auxNum);
+            return a;
+    }
 
     if(a.integerChars[0] != '0' and b.integerChars[0] != '0'){
         if (((a.integerChars[0] - 48) - b.integerChars[0] - 48) < 9){

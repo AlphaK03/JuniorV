@@ -31,7 +31,7 @@ int main() {
     Integer num5("29999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
 
 
-    num5 = Integer("7");
+    num5 = Integer("12");
 
     Integer numFibo("1");
     Integer numeroUno("1");
