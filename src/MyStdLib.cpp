@@ -126,3 +126,75 @@ cadena.clear();
 
     return cadena;
 }
+
+Lista<int>* MyStdLib::strToList(string ss) {
+    auto* list = new Lista<int>;
+    int iterator = 0;
+    string newString;
+    int  i = 0;
+
+    while (ss[iterator] != '\0'){
+        newString += ss[iterator];
+
+        iterator++;
+        i++;
+        if(i == 4 || ss[iterator] == '\0'){
+            int *val = new int ();
+            *val = MyStdLib::strToInt(newString);
+            list->insertar(val);
+            val = new int();
+            newString.clear();
+            i = 0;
+        }
+    }
+    return list;
+}
+
+string *MyStdLib::resultadoFinal(Lista<int> *listA, Lista<int> *listaB) {
+    auto* list = new Lista<int>;
+    auto* list2 = new Lista<int>;
+
+    list = listA;
+    list2 = listaB;
+
+    auto *finalTotal = new Lista<int>();
+    auto *resultado = new string();
+    bool lleva = false;
+    int total = 0;
+
+    string numeroSumado;
+    int iteradorWhile = 0;
+    int  i2 = 0;
+    int last = list->getCantidad();
+    while (i2 <= (list->getCantidad())){
+        while (list->buscarElemento(last - i2 ) != nullptr){
+            if(lleva){
+                total = ((*list->buscarElemento(last - i2)) + *list2->buscarElemento(last - i2)) + 1;
+            } else{
+                total = *list->buscarElemento(last - i2) + *list2->buscarElemento(last - i2);
+            }
+
+            if(total > 9999){
+                lleva = true;
+                numeroSumado = MyStdLib::intToString(total).substr(1, 4);
+                *resultado += numeroSumado;
+            } else{
+                lleva = false;
+                numeroSumado = MyStdLib::intToString(total);
+                *resultado += numeroSumado;
+            }
+            i2++;
+        }
+    }
+
+    finalTotal = MyStdLib::strToList(*resultado);
+    resultado->clear();
+    last = finalTotal->getCantidad();
+    int i3 = 0;
+    while (finalTotal->buscarElemento( last - i3 ) != nullptr){
+            *resultado += std::to_string(*finalTotal->buscarElemento(last - i3));
+        i3++;
+    }
+    //*resultado =  MyStdLib::invertirCadena(*resultado);
+    return resultado;
+}

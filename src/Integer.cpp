@@ -73,127 +73,29 @@ int Integer::length(Integer a) {
 
 Integer &operator+=(Integer &a, const Integer &b) {
 
-  /*  int sizeA = a.length(a);
-    int sizeB = b.length(b);
-    if (sizeB > sizeA){
-        a.integerChars.append(sizeB - sizeA, 0);
-        sizeA = a.length(a);
-    }
-*/
-  /*int s = 0;
-    s = (MyStdLib::strToInt(a.integerChars) + MyStdLib::strToInt(b.integerChars));
-    a.integerChars = MyStdLib::intToString(s);*/
-
     string ss = a.integerChars;
     string ss2 = b.integerChars;
 
     auto* list = new Lista<int>;
     auto* list2 = new Lista<int>;
-    /* int iterator = 0;
-     auto newString = new int ();
-     int  i = 0;
 
-     while (ss[iterator] != '\0'){
-             *newString += ss[iterator];
-             iterator++;
-             i++;
-         if(i == 4 || ss[iterator] == '\0'){
-             list->insertar(newString);
-             newString = reinterpret_cast<int *>(new string());
-             i = 0;
-         }
-     };*/
-    int iterator = 0;
-    string newString;
-    int  i = 0;
+    list = MyStdLib::strToList(ss);
+    list2 = MyStdLib::strToList(ss2);
 
-    while (ss[iterator] != '\0'){
-        newString += ss[iterator];
-
-        iterator++;
-        i++;
-        if(i == 4 || ss[iterator] == '\0'){
-            int *val = new int ();
-            *val = MyStdLib::strToInt(newString);
-            list->insertar(val);
-            val = new int();
-            newString.clear();
-            i = 0;
-        }
-    };
-
-    iterator = 0;
-    newString.clear();
-    while (ss2[iterator] != '\0'){
-        newString += ss2[iterator];
-
-        iterator++;
-        i++;
-        if(i == 4 || ss2[iterator] == '\0'){
-            int *val = new int ();
-            *val = MyStdLib::strToInt(newString);
-            list2->insertar(val);
-            val = new int();
-            newString.clear();
-            i = 0;
-        }
-    };
-    auto *finalTotal = new Lista<string>();
     auto *resultado = new string();
-    bool lleva = false;
-    int total = 0;
-
-    string numeroSumado;
-    int iteradorWhile = 0;
-    int  i2 = 0;
-    while (i2 <= (list->getCantidad())){
-        while (list->buscarElemento(i2 ) != nullptr){
-            if(lleva){
-                total = ((*list->buscarElemento(i2)) + *list2->buscarElemento(i2)) + 1;
-            } else{
-                total = *list->buscarElemento(i2) + *list2->buscarElemento(i2);
-            }
-
-
-        if(total > 9999){
-            lleva = true;
-            numeroSumado = MyStdLib::intToString(total).substr(1, 4);
-            *resultado += numeroSumado;
-            finalTotal->insertar(resultado);
-        } else{
-            lleva = false;
-            numeroSumado = MyStdLib::intToString(total);
-            *resultado += numeroSumado;
-            finalTotal->insertar(resultado);
-        }
-        i2++;
-    }
-    }
-    /*int iterator = 0;
-     string newString;
-     int  i = 0;
-
-     while (ss[iterator] != '\0'){
-         newString += ss[iterator];
-         iterator++;
-         i++;
-         if(i == 4 || ss[iterator] == '\0'){
-             int val = 0;
-             val = MyStdLib::strToInt(newString);
-             list->insertar(&val);
-             newString.clear();
-             i = 0;
-         }
-     };*/
+    resultado = MyStdLib::resultadoFinal(list, list2);
 
     a.integerChars.clear();
-
-
     a.integerChars = *resultado;
-    if(a.integerChars[0] == '0'){
-        a.integerChars = "1" + a.integerChars;
+
+
+    if(ss[0] == 53){
+        a.integerChars = "10" + a.integerChars;
     }
 
+    if(ss[0] > 53 and ss2[0] <= 57){
+        a.integerChars = "1" + a.integerChars;
+    }
     return a;
 }
 
