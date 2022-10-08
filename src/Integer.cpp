@@ -72,9 +72,32 @@ int Integer::length(Integer a) {
 }
 
 Integer &operator+=(Integer &a, const Integer &b) {
+    int i = 0;
+    string cero = "0";
+    string aux;
+
 
     string ss = a.integerChars;
     string ss2 = b.integerChars;
+
+    if(ss.size() > ss2.size()){
+        while (i < (ss.size() - ss2.size())){
+            aux += cero;
+            i++;
+        }
+        aux = aux + ss2;
+        ss2 = aux;
+    }
+    if(ss.size() < ss2.size()){
+        while (i < (ss2.size() - ss.size())){
+            aux += cero;
+            i++;
+        }
+        aux = aux + ss;
+        ss = aux;
+    }
+
+
 
     auto* list = new Lista<int>;
     auto* list2 = new Lista<int>;
@@ -89,13 +112,20 @@ Integer &operator+=(Integer &a, const Integer &b) {
     a.integerChars = *resultado;
 
 
-    if(ss[0] == 53){
-        a.integerChars = "10" + a.integerChars;
+    if(a.integerChars[0] != '0' and b.integerChars[0] != '0'){
+        if (((a.integerChars[0] - 48) - b.integerChars[0] - 48) < 9){
+            if(ss[0] == 53){
+                a.integerChars = "10" + a.integerChars;
+            }
+
+            if(ss[0] > 53 and ss2[0] <= 57){
+
+                a.integerChars = "1" + a.integerChars;
+            }
+        }
     }
 
-    if(ss[0] > 53 and ss2[0] <= 57){
-        a.integerChars = "1" + a.integerChars;
-    }
+
     return a;
 }
 
@@ -186,9 +216,29 @@ Integer &operator-=(Integer &a, const Integer &b) {
     s = (MyStdLib::strToInt(a.integerChars) - MyStdLib::strToInt(temp.integerChars));
     a.integerChars = MyStdLib::intToString(s);
     return a;*/
+    int i = 0;
+    string cero = "0";
+    string aux;
 
     string ss = a.integerChars;
     string ss2 = b.integerChars;
+
+    if(ss.size() > ss2.size()){
+        while (i < (ss.size() - ss2.size())){
+            aux += cero;
+            i++;
+        }
+        aux = aux + ss2;
+        ss2 = aux;
+    }
+    if(ss.size() < ss2.size()){
+        while (i < (ss2.size() - ss.size())){
+            aux += cero;
+            i++;
+        }
+        aux = aux + ss;
+        ss = aux;
+    }
 
     auto* list = new Lista<int>;
     auto* list2 = new Lista<int>;

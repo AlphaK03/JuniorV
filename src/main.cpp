@@ -7,11 +7,40 @@
 #include "Lista.h"
 
 using namespace std;
+static Integer fibonacciIterative(Integer n) {
+    Integer aux("1");
+    if (n <= aux) {
+        return n;
+    }
+    Integer fib = Integer("1");
+    Integer prevFib = Integer("1");
 
+    Integer i("2");
+
+    while (i != n) {
+        Integer temp = fib;
+        fib += prevFib;
+        prevFib = temp;
+        i += aux;
+    }
+    return fib;
+}
 int main() {
 
-    Integer num1("923412348234666644242347");
-    Integer num5("923412348234666644242347");
+    Integer num1("9989999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
+    Integer num5("29999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
+
+
+    num5 = Integer("7");
+
+    Integer numFibo("1");
+    Integer numeroUno("1");
+
+    Integer inte("1");
+    while (inte != num5){
+        cout << fibonacciIterative(inte) << endl;
+        inte += numeroUno;
+    }
 
     string ss = "12345678955";
     string ss2 = "000012430";
@@ -91,7 +120,8 @@ int main() {
     cout << "\n" << endl;
     Integer num2;
     num2 = num5 - num1;
-    cout << num2;
+
+
 
 
 //    while (integerChars[0] != '\0'){

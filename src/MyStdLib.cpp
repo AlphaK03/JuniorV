@@ -138,7 +138,7 @@ Lista<int>* MyStdLib::strToList(string ss) {
 
         iterator++;
         i++;
-        if(i == 4 || ss[iterator] == '\0'){
+        if(i == 1 || ss[iterator] == '\0'){
             int *val = new int ();
             *val = MyStdLib::strToInt(newString);
             list->insertar(val);
@@ -153,6 +153,7 @@ Lista<int>* MyStdLib::strToList(string ss) {
 string *MyStdLib::resultadoFinal(Lista<int> *listA, Lista<int> *listaB) {
     auto* list = new Lista<int>;
     auto* list2 = new Lista<int>;
+    auto* listAux = new Lista<int>;
 
     list = listA;
     list2 = listaB;
@@ -166,15 +167,25 @@ string *MyStdLib::resultadoFinal(Lista<int> *listA, Lista<int> *listaB) {
     int iteradorWhile = 0;
     int  i2 = 0;
     int last = list->getCantidad();
+
     while (i2 <= (list->getCantidad())){
         while (list->buscarElemento(last - i2 ) != nullptr){
             if(lleva){
-                total = ((*list->buscarElemento(last - i2)) + *list2->buscarElemento(last - i2)) + 1;
+                if(list->buscarElemento(last - i2) != nullptr){
+                    total = ((*list->buscarElemento(last - i2)) + *list2->buscarElemento(last - i2)) + 1;
+                } else{
+                    break;
+                }
+
             } else{
-                total = *list->buscarElemento(last - i2) + *list2->buscarElemento(last - i2);
+                if(list->buscarElemento(last - i2) != nullptr){
+                    total = ((*list->buscarElemento(last - i2)) + *list2->buscarElemento(last - i2));
+                } else{
+                    break;
+                }
             }
 
-            if(total > 9999){
+            if(total > 9){
                 lleva = true;
                 numeroSumado = MyStdLib::intToString(total).substr(1, 4);
                 *resultado += numeroSumado;
@@ -184,7 +195,9 @@ string *MyStdLib::resultadoFinal(Lista<int> *listA, Lista<int> *listaB) {
                 *resultado += numeroSumado;
             }
             i2++;
+
         }
+
     }
 
     finalTotal = MyStdLib::strToList(*resultado);
@@ -228,11 +241,15 @@ string *MyStdLib::resultadoFinalResta(Lista<int> *listA, Lista<int> *listaB) {
                     pide = true;
                     numeroSumado = MyStdLib::intToString(total).substr(1, 4);
                     *resultado += numeroSumado;
-                } else{
+                }
+
+                else{
                     pide = false;
                     numeroSumado = MyStdLib::intToString(total);
                     *resultado += numeroSumado;
                 }
+            }if(total == 0){
+                *resultado += "0";
             }
 
             i2++;
