@@ -1,11 +1,60 @@
-//
-// Created by keylo on 31/8/2022.
-//
+/****************************/
+/*  Univercidad Nacional.
+/*  Escuela de informatica.
+/*  Profesor Georges Alfaro Salazar
+/*  Integrantes:
+/*  Keilor Cortes Cascante
+/*  Jennifer Lobo Vasquez
+/****************************/
 
 #include "Integer.h"
 #include "MyStdLib.h"
 #include "Lista.h"
+void test(){
+    cout<<"Prueba con datos quemados...";
+    cout<<endl<<"Suma"<<endl;
+    Integer num1("923412348234666644242347");
+    Integer num2("134523482347777444242256");
+    cout<<"  923412348234666644242347"<<endl;
+    cout<<"+ 134523482347777444242256"<<endl;
+    cout<<"  ------------------------"<<endl;
+    cout<<"  "<<num1+num2<<endl;
 
+    cout<<endl<<"Resta"<<endl;
+    num1.setIntegerChars("100000200000000342588910898");
+    num2.setIntegerChars("100000200000000342588910887");
+    cout<<"  100000200000000342588910898"<<endl;
+    cout<<"- 100000200000000342588910887"<<endl;
+    cout<<"  ---------------------------"<<endl;
+    cout<<"                           "<<num1-num2<<endl;
+
+    cout<<endl<<"Operadores de comparacion"<<endl;
+    cout<<"N1-> 100000200000000342588910898"<<endl;
+    cout<<"N2-> 100000200000000342588910887"<<endl;
+    if(num1==num1){
+        cout<<"N1 == N1"<<endl;
+    }
+    if(num1!=num2){
+        cout<<"N1 != N2"<<endl;
+    }
+    if(num1>num2){
+        cout<<"N1 > N2"<<endl;
+    }
+    if(num2<num1){
+        cout<<"N2 < N1"<<endl;
+    }
+
+    cout<<endl<<"Factorial-> 100"<<endl;
+    Integer num("100");
+    cout<<num.factorial()<<endl;
+
+    cout<<endl<<"Sucecion de Fibonacci-> 1000"<<endl;
+    num.setIntegerChars("1000");
+    cout<<num.fibonacci()<<endl;
+
+    cout<<endl<<"Combinaciones-> 10,5"<<endl;
+    cout<<num.comb(10,5)<<endl;
+}
 using namespace std;
 static Integer fibonacciIterative(Integer n) {
     Integer aux("1");
@@ -26,6 +75,7 @@ static Integer fibonacciIterative(Integer n) {
     return fib;
 }
 int main() {
+    test();
 
     Integer num1("9989999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
     Integer num5("29999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
@@ -47,20 +97,20 @@ int main() {
 
     auto* list = new Lista<int>;
     auto* list2 = new Lista<int>;
-   /* int iterator = 0;
-    auto newString = new int ();
-    int  i = 0;
+    /* int iterator = 0;
+     auto newString = new int ();
+     int  i = 0;
 
-    while (ss[iterator] != '\0'){
-            *newString += ss[iterator];
-            iterator++;
-            i++;
-        if(i == 4 || ss[iterator] == '\0'){
-            list->insertar(newString);
-            newString = reinterpret_cast<int *>(new string());
-            i = 0;
-        }
-    };*/
+     while (ss[iterator] != '\0'){
+             *newString += ss[iterator];
+             iterator++;
+             i++;
+         if(i == 4 || ss[iterator] == '\0'){
+             list->insertar(newString);
+             newString = reinterpret_cast<int *>(new string());
+             i = 0;
+         }
+     };*/
     int iterator = 0;
     string newString;
     int  i = 0;
@@ -96,22 +146,22 @@ int main() {
             i = 0;
         }
     };
-   /*int iterator = 0;
-    string newString;
-    int  i = 0;
+    /*int iterator = 0;
+     string newString;
+     int  i = 0;
 
-    while (ss[iterator] != '\0'){
-        newString += ss[iterator];
-        iterator++;
-        i++;
-        if(i == 4 || ss[iterator] == '\0'){
-            int val = 0;
-            val = MyStdLib::strToInt(newString);
-            list->insertar(&val);
-            newString.clear();
-            i = 0;
-        }
-    };*/
+     while (ss[iterator] != '\0'){
+         newString += ss[iterator];
+         iterator++;
+         i++;
+         if(i == 4 || ss[iterator] == '\0'){
+             int val = 0;
+             val = MyStdLib::strToInt(newString);
+             list->insertar(&val);
+             newString.clear();
+             i = 0;
+         }
+     };*/
 
     string  dato1;
     string  dato2;
@@ -122,18 +172,6 @@ int main() {
     num2 = num5 - num1;
 
 
-
-
-//    while (integerChars[0] != '\0'){
-//        string fourLetters{};
-//        for(int i = 0; i < 3; i++){
-//            {
-//                fourLetters += integerChars[0];
-//                integerChars = std::to_string(remove(&integerChars[0]));
-//            }
-//        }
-//        this->value->insertar(new int(MyStdLib::strToInt(fourLetters)));
-//    }
 /*    Estrella estrella;
 
     estrella.agregarNumero(1);
@@ -158,6 +196,8 @@ int main() {
     for(auto num : estrella.getListaNumeros()){
         cout << num << " ";
     }*/
+
+
 
     return 0;
 
