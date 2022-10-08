@@ -179,12 +179,29 @@ Integer &operator-(Integer &a, const Integer &b) {
 }
 
 Integer &operator-=(Integer &a, const Integer &b) {
-    int s = 0;
+    /*int s = 0;
     MyStdLib myStdLib;
     Integer temp(b);
 
     s = (MyStdLib::strToInt(a.integerChars) - MyStdLib::strToInt(temp.integerChars));
     a.integerChars = MyStdLib::intToString(s);
+    return a;*/
+
+    string ss = a.integerChars;
+    string ss2 = b.integerChars;
+
+    auto* list = new Lista<int>;
+    auto* list2 = new Lista<int>;
+
+    list = MyStdLib::strToList(ss);
+    list2 = MyStdLib::strToList(ss2);
+
+    auto *resultado = new string();
+    resultado = MyStdLib::resultadoFinalResta(list, list2);
+
+    a.integerChars.clear();
+    a.integerChars = *resultado;
+
     return a;
 }
 

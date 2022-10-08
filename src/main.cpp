@@ -10,7 +10,8 @@ using namespace std;
 
 int main() {
 
-    Integer num1("923412348234666644242343");
+    Integer num1("923412348234666644242347");
+    Integer num5("923412348234666644242347");
 
     string ss = "12345678955";
     string ss2 = "000012430";
@@ -89,7 +90,7 @@ int main() {
 
     cout << "\n" << endl;
     Integer num2;
-    num2 = num1 + num1;
+    num2 = num5 - num1;
     cout << num2;
 
 

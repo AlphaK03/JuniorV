@@ -16,6 +16,7 @@ public:
     static std::string invertirCadenaFinal(std::string ss);
     static Lista<int>* strToList(string ss);
     static string* resultadoFinal(Lista<int>*, Lista<int>*);
+    static string* resultadoFinalResta(Lista<int>*, Lista<int>*);
 
 };
 

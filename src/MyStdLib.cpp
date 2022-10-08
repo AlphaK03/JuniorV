@@ -198,3 +198,58 @@ string *MyStdLib::resultadoFinal(Lista<int> *listA, Lista<int> *listaB) {
     //*resultado =  MyStdLib::invertirCadena(*resultado);
     return resultado;
 }
+
+string *MyStdLib::resultadoFinalResta(Lista<int> *listA, Lista<int> *listaB) {
+    auto* list = new Lista<int>;
+    auto* list2 = new Lista<int>;
+
+    list = listA;
+    list2 = listaB;
+
+    auto *finalTotal = new Lista<int>();
+    auto *resultado = new string();
+    bool pide = false;
+    int total = 0;
+
+    string numeroSumado;
+    int iteradorWhile = 0;
+    int  i2 = 0;
+    int last = list->getCantidad();
+    while (i2 <= (list->getCantidad())){
+        while (list->buscarElemento(last - i2 ) != nullptr){
+            if(pide){
+                total = ((*list->buscarElemento(last - i2)) - *list2->buscarElemento(last - i2)) - 1;
+            } else{
+                total = *list->buscarElemento(last - i2) - *list2->buscarElemento(last - i2);
+            }
+
+            if(total !=0 and !pide){
+                if(total < 0){
+                    pide = true;
+                    numeroSumado = MyStdLib::intToString(total).substr(1, 4);
+                    *resultado += numeroSumado;
+                } else{
+                    pide = false;
+                    numeroSumado = MyStdLib::intToString(total);
+                    *resultado += numeroSumado;
+                }
+            }
+
+            i2++;
+        }
+    }
+
+    finalTotal = MyStdLib::strToList(*resultado);
+    resultado->clear();
+    last = finalTotal->getCantidad();
+    int i3 = 0;
+    while (finalTotal->buscarElemento( last - i3 ) != nullptr){
+        *resultado += std::to_string(*finalTotal->buscarElemento(last - i3));
+        i3++;
+    }
+    //*resultado =  MyStdLib::invertirCadena(*resultado);
+    if(resultado->empty()){
+        *resultado = "0";
+    }
+    return resultado;
+}
