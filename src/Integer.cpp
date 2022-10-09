@@ -291,14 +291,14 @@ string Integer::fibonacci(){
     if (n == 1) {
         s << 0 << endl;
     }
-    unsigned long long a = 0;
-    unsigned long long b = 1;
-    unsigned long long c;
+    Integer a("0");
+    Integer b("1");
+    Integer c;
 
     s << a << " " << b;
     for (unsigned long long i = 3; i <= n; i++){
         c = a + b;
-        s << " " << c;
+        s << c<<endl;
         a = b;
         b = c;
     }
