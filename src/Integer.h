@@ -7,8 +7,6 @@
 #include "iostream"
 #include "MyStdLib.h"
 #include "Lista.h"
-#define MAX 500
-#include <algorithm>
 using namespace std;
 class Integer {
 private:
@@ -62,13 +60,8 @@ public:
 
     void setIntegerChars(const string &integerChars);
 
-    //Fibonaci
-    string fibonacci();
-    //Factorial
-    int multiply(int x, int res[], int res_size);
-    string factorial();
-    //Combinaciones
-    string comb(int N, int K);
+    static Integer fibonacciIterative(Integer n);
+    static Integer factorial(Integer);
 
 };
 

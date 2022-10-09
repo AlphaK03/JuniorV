@@ -232,13 +232,6 @@ bool Lista<T>::eliminar()
 template<class T>
 std::string Lista<T>::mostrar()
 {
-    /* std::string ss;
-    actual = primero;
-    while (actual) {
-        ss = *actual->getObjetoPtr();
-        actual = actual->getSiguiente();
-    }
-    return ss.c_str();*/
 std::stringstream ss;
     actual = primero;
     while (actual != nullptr) {

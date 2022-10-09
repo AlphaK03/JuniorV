@@ -36,26 +36,6 @@ bool Integer::operator>=(const Integer &rhs) const {
 Integer::Integer(string ss){
     this->integerChars.clear();
     this->integerChars = std::move(ss);
-  /*  int iterator = 0;
-    string newString;
-    int  i = 0;
-
-    this->integerChars = ss;
-
-    while (ss[iterator] != '\0'){
-        newString += ss[iterator];
-
-        iterator++;
-        i++;
-        if(i == 4 || ss[iterator] == '\0'){
-            int *val = new int ();
-            *val = MyStdLib::strToInt(newString);
-            value->insertar(val);
-            val = new int();
-            newString.clear();
-            i = 0;
-        }
-    };*/
 }
 
 Integer &operator+(Integer &a, const Integer &b) {
@@ -75,7 +55,6 @@ Integer &operator+=(Integer &a, const Integer &b) {
     int i = 0;
     string cero = "0";
     string aux;
-
 
     string ss = a.integerChars;
     string ss2 = b.integerChars;
@@ -97,8 +76,6 @@ Integer &operator+=(Integer &a, const Integer &b) {
         ss = aux;
     }
 
-
-
     auto* list = new Lista<int>;
     auto* list2 = new Lista<int>;
 
@@ -118,12 +95,10 @@ Integer &operator+=(Integer &a, const Integer &b) {
             return a;
     }
 
-
     return a;
 }
 
 ostream &operator<<(ostream &out, const Integer &a) {
-    /**/
     string charString;
     for (int i = 0; a.integerChars[i] != '\0'; i++){
         charString.push_back(a.integerChars[i]);
@@ -192,8 +167,6 @@ Integer &operator*=(Integer &a, const Integer &b) {
     for(int i=2;i<=n;i++){
         temp+=a;
     }
-    //s = (MyStdLib::strToInt(a.integerChars) * MyStdLib::strToInt(temp.integerChars));
-    //a.integerChars = MyStdLib::intToString(s);
     return a=temp;
 }
 
@@ -203,13 +176,6 @@ Integer &operator-(Integer &a, const Integer &b) {
 }
 
 Integer &operator-=(Integer &a, const Integer &b) {
-    /*int s = 0;
-    MyStdLib myStdLib;
-    Integer temp(b);
-
-    s = (MyStdLib::strToInt(a.integerChars) - MyStdLib::strToInt(temp.integerChars));
-    a.integerChars = MyStdLib::intToString(s);
-    return a;*/
     int i = 0;
     string cero = "0";
     string aux;
@@ -272,71 +238,33 @@ Integer::Integer() = default;
 
 Integer::~Integer() = default;
 
-//Fibonacci
-string Integer::fibonacci(){
-    stringstream s;
-    unsigned long long n=MyStdLib::strToInt(this->getIntegerChars());
-    if (n == 1) {
-        s << 0 << endl;
+Integer Integer::fibonacciIterative(Integer n) {
+    Integer aux("1");
+    if (n <= aux) {
+        return n;
     }
-    Integer a("0");
-    Integer b("1");
-    Integer c;
+    Integer fib = Integer("1");
+    Integer prevFib = Integer("1");
 
-    s << a << " " << b;
-    for (unsigned long long i = 3; i <= n; i++){
-        c = a + b;
-        s << c<<endl;
-        a = b;
-        b = c;
+    Integer i("2");
+
+    while (i != n) {
+        Integer temp = fib;
+        fib += prevFib;
+        prevFib = temp;
+        i += aux;
     }
-    return s.str();
+    return fib;
 }
 
-//Factorial
-int Integer::multiply(int x, int res[], int res_size){
-    int carry = 0;
-    for (int i = 0; i < res_size; i++) {
-        int prod = res[i] * x + carry;
-        res[i] = prod % 10;
-        carry = prod / 10;
+Integer Integer::factorial(Integer num){
+    Integer f("1");
+    Integer i("2");
+    Integer numberOne("1");
+    while (i != num){
+        f *= i;
+        i = i + numberOne;
     }
 
-    while (carry) {
-        res[res_size] = carry % 10;
-        carry = carry / 10;
-        res_size++;
-    }
-    return res_size;
-}
-string Integer::factorial(){
-    stringstream s;
-    int  n=MyStdLib::strToInt(this->getIntegerChars());
-    int res[MAX];
-    res[0] = 1;
-    int res_size = 1;
-    for (int x = 2; x <= n; x++)
-        res_size = multiply(x, res, res_size);
-
-    s << "Resultado: ";
-    for (int i = res_size - 1; i >= 0; i--)
-        s << res[i];
-    return s.str();
-}
-
-//Combinaciones
-string Integer::comb(int N, int K){
-    stringstream s;
-    string bitmask(K, 1); // K leading 1's
-    bitmask.resize(N, 0); // N-K trailing 0's
-
-    // print integers and permute bitmask
-    do {
-        for (int i = 0; i < N; ++i) // [0..N-1] integers
-        {
-            if (bitmask[i]) s << " " << i;
-        }
-        s<<endl;
-    } while (prev_permutation(bitmask.begin(), bitmask.end()));
-    return s.str();
+    return f;
 }
