@@ -10,6 +10,7 @@
 #include "Integer.h"
 #include "MyStdLib.h"
 #include "Lista.h"
+
 void test(){
     cout<<"Prueba con datos quemados...";
     cout<<endl<<"Suma"<<endl;
@@ -83,23 +84,28 @@ static Integer fibonacciIterative(Integer n) {
     return fib;
 }
 int main() {
-    test();
+   // test();
 
-    Integer num1("1000000000000000000000000000002245");
-    Integer num5("5");
+    Integer num1("1000000000000000000000000000002249");
+
+    Integer sumaNum("10000000000000000000000000000022491123");
+
+
+
+    Integer num5("1234567");
    // cout<<num1*num5<<endl;
 
 
 
-    num5 = Integer("12");
+    num5 = Integer("1001");
 
     Integer numFibo("1");
     Integer numeroUno("1");
 
     Integer inte("1");
     while (inte != num5){
-        //cout << fibonacciIterative(inte) << endl;
-        inte += numeroUno;
+        cout << "(" << inte << ")" << fibonacciIterative(inte) << endl;
+        inte =  inte + numeroUno;
     }
 
     string ss = "12345678955";
@@ -179,7 +185,8 @@ int main() {
 
     cout << "\n" << endl;
     Integer num2;
-    num2 = num5 - num1;
+    num2 = sumaNum + num1;
+    cout << num2 << endl;
 
 
 /*    Estrella estrella;

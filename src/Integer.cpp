@@ -118,18 +118,6 @@ Integer &operator+=(Integer &a, const Integer &b) {
             return a;
     }
 
-    if(a.integerChars[0] != '0' and b.integerChars[0] != '0'){
-        if (((a.integerChars[0] - 48) - b.integerChars[0] - 48) < 9){
-            if(ss[0] == 53){
-                a.integerChars = "10" + a.integerChars;
-            }
-
-            if(ss[0] > 53 and ss2[0] <= 57){
-                a.integerChars = "1" + a.integerChars;
-            }
-        }
-    }
-
 
     return a;
 }

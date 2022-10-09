@@ -209,6 +209,10 @@ string *MyStdLib::resultadoFinal(Lista<int> *listA, Lista<int> *listaB) {
         i3++;
     }
     //*resultado =  MyStdLib::invertirCadena(*resultado);
+
+    if(lleva){
+        *resultado = "1" + *resultado;
+    }
     return resultado;
 }
 
