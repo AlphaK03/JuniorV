@@ -13,11 +13,11 @@
 void test(){
     cout<<"Prueba con datos quemados...";
     cout<<endl<<"Suma"<<endl;
-    Integer num1("923412348234666644242347");
-    Integer num2("134523482347777444242256");
-    cout<<"  923412348234666644242347"<<endl;
-    cout<<"+ 134523482347777444242256"<<endl;
-    cout<<"  ------------------------"<<endl;
+    Integer num1("1000000000000000000000000000011");
+    Integer num2("5000000000000000000000000000006");
+    cout<<"  100000000000000000000000000011"<<endl;
+    cout<<"+ 000000000000000000000000000006"<<endl;
+    cout<<"  ------------------------------"<<endl;
     cout<<"  "<<num1+num2<<endl;
 
     cout<<endl<<"Resta"<<endl;
@@ -26,7 +26,15 @@ void test(){
     cout<<"  100000200000000342588910898"<<endl;
     cout<<"- 100000200000000342588910887"<<endl;
     cout<<"  ---------------------------"<<endl;
-    cout<<"                           "<<num1-num2<<endl;
+    cout<<"  "<<num1-num2<<endl;
+
+    cout<<endl<<"Multiplicacion"<<endl;
+    num1.setIntegerChars("100000000000000000000000000000021");
+    num2.setIntegerChars("5");
+    cout<<"  100000000000000000000000000000021"<<endl;
+    cout<<"  *                               5"<<endl;
+    cout<<"  ---------------------------------"<<endl;
+    cout<<"  "<<num1*num2<<endl;
 
     cout<<endl<<"Operadores de comparacion"<<endl;
     cout<<"N1-> 100000200000000342588910898"<<endl;
@@ -77,8 +85,10 @@ static Integer fibonacciIterative(Integer n) {
 int main() {
     test();
 
-    Integer num1("9989999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
-    Integer num5("29999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
+    Integer num1("1000000000000000000000000000002245");
+    Integer num5("5");
+   // cout<<num1*num5<<endl;
+
 
 
     num5 = Integer("12");
@@ -88,7 +98,7 @@ int main() {
 
     Integer inte("1");
     while (inte != num5){
-        cout << fibonacciIterative(inte) << endl;
+        //cout << fibonacciIterative(inte) << endl;
         inte += numeroUno;
     }
 

@@ -125,7 +125,6 @@ Integer &operator+=(Integer &a, const Integer &b) {
             }
 
             if(ss[0] > 53 and ss2[0] <= 57){
-
                 a.integerChars = "1" + a.integerChars;
             }
         }
@@ -200,13 +199,14 @@ Integer &operator*(Integer &a, const Integer &b) {
 }
 
 Integer &operator*=(Integer &a, const Integer &b) {
-    int s = 0;
-    MyStdLib myStdLib;
-    Integer temp(b);
-
-    s = (MyStdLib::strToInt(a.integerChars) * MyStdLib::strToInt(temp.integerChars));
-    a.integerChars = MyStdLib::intToString(s);
-    return a;
+    Integer temp=a;
+    int n=MyStdLib::strToInt(b.integerChars);
+    for(int i=2;i<=n;i++){
+        temp+=a;
+    }
+    //s = (MyStdLib::strToInt(a.integerChars) * MyStdLib::strToInt(temp.integerChars));
+    //a.integerChars = MyStdLib::intToString(s);
+    return a=temp;
 }
 
 Integer &operator-(Integer &a, const Integer &b) {
